@@ -1,17 +1,17 @@
 import os
-from flask import Flask, request,render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# 配置数据库
+# Configure the database
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'procurement.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# 定义采购请求模型
+# Define the ProcurementRequest model
 class ProcurementRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String(80), nullable=False)
@@ -28,22 +28,22 @@ class ProcurementRequest(db.Model):
             "description": self.description
         }
 
-# 创建数据库
+# Create the database
 with app.app_context():
     db.create_all()
 
-# 首页，显示所有采购请求
+# Home route, display all procurement requests
 @app.route('/')
 def index():
     procurements = ProcurementRequest.query.all()
     return render_template('index.html', procurements=procurements)
 
-# 添加采购请求的表单页面
+# Form to add a new procurement request
 @app.route('/add_procurement', methods=['GET'])
 def add_procurement_form():
     return render_template('add_procurement.html')
 
-# 处理添加采购请求
+# Handle the form submission for adding a new procurement request
 @app.route('/add_procurement', methods=['POST'])
 def add_procurement():
     item_name = request.form['item_name']
@@ -61,6 +61,7 @@ def add_procurement():
     db.session.commit()
     return redirect(url_for('index'))
 
+# Delete a procurement request
 @app.route('/delete_procurement/<int:id>', methods=['POST'])
 def delete_procurement(id):
     procurement = ProcurementRequest.query.get_or_404(id)
@@ -68,13 +69,13 @@ def delete_procurement(id):
     db.session.commit()
     return redirect(url_for('index'))
 
-# Display the form to edit an existing procurement
+# Display the form to edit an existing procurement request
 @app.route('/edit_procurement/<int:id>', methods=['GET'])
 def edit_procurement_form(id):
     procurement = ProcurementRequest.query.get_or_404(id)
     return render_template('edit_procurement.html', procurement=procurement)
 
-# Handle the form submission to update the procurement
+# Handle the form submission to update an existing procurement request
 @app.route('/edit_procurement/<int:id>', methods=['POST'])
 def edit_procurement(id):
     procurement = ProcurementRequest.query.get_or_404(id)
@@ -86,7 +87,6 @@ def edit_procurement(id):
     db.session.commit()
     return redirect(url_for('index'))
 
-
-# 启动 Flask 应用
+# Run the Flask application
 if __name__ == '__main__':
     app.run(debug=True)
