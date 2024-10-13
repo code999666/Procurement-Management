@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Add New Procurement Request</h2>
+    <form action="{{ url_for('add_procurement') }}" method="POST">
+        <label for="item_name">Item Name:</label>
+        <input type="text" name="item_name" id="item_name" required><br>
+        
+        <label for="supplier">Supplier:</label>
+        <input type="text" name="supplier" id="supplier" required><br>
+
+        <label for="cost">Cost:</label>
+        <input type="number" name="cost" id="cost" step="0.01" required><br>
+
+        <label for="description">Description:</label>
+        <textarea name="description" id="description"></textarea><br>
+
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
