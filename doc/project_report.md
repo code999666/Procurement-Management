@@ -1,48 +1,78 @@
-# Project Report: Configuration Management and Procurement Process
+# Configuration Management Report
 
-## 1. Introduction
-This report details the configuration management and procurement processes implemented for the **Procurement Management System** project. It includes a description of the branching strategy, version control practices, deployment configurations, and the tools and services acquired for the system's successful delivery.
+## Contents
 
-## 2. Configuration Management
+- [Introduction](#introduction)	
+- [Version Control Practices](#version-control-practices)	
+- [Repository Setup](#repository-setup)	
+- [Branching Strategies](#branching-strategies)	
+- [Application Settings and Deployment Configurations](#application-settings-and-deployment-configurations)	
+- [Documentation of Changes](#documentation-of-changes)	
+- [Conclusion](#conclusion)
+- [References](#references)	
 
-### 2.1 Version Control
-The project utilizes **Git** for version control, hosted on **GitHub**. The following practices were adopted:
-- **Main Branch**: Represents the production-ready code. All stable releases are merged into this branch.
-- **Feature Branches**: Each new feature is developed in its own branch, named after the feature being developed (e.g., `feature-add-request`, `feature-edit-request`).
-- **Pull Requests**: Features are merged into the main branch via pull requests, ensuring proper code review and testing before deployment.
+## Introduction
+This report outlines the configuration management processes implemented for the **Procurement Management System**. It explores the essential aspects of version control, repository setup, and deployment configurations necessary for maintaining the stability and reliability of the software. Effective configuration management ensures efficient collaboration and streamlined development processes, which are critical for the success of the project.
 
-### 2.2 Branching Strategy
-We adopted a **GitFlow** workflow for managing branches and releases:
-- **Feature Branches**: All new features were developed in isolated feature branches to minimize disruption to the main codebase.
-- **Development Branch**: Once features were merged, they were tested in a development branch.
-- **Hotfix Branches**: In case of bugs found in the main branch, hotfixes were developed separately and merged back into both main and development branches.
+## Version Control Practices
+Version control is a fundamental component of configuration management. The following practices were adopted for maintaining the project codebase:
+- **Use of Git**: The project utilizes Git for version control, allowing multiple developers to work simultaneously without conflicting changes.
+- **Commit Guidelines**: Regular commits with clear, descriptive messages are encouraged to track changes effectively. This practice facilitates easy navigation through the project history.
+- **Pull Requests**: Code changes are proposed via pull requests, which undergo thorough review before merging into the master branch. This process enhances code quality and team collaboration.
 
-### 2.3 Deployment Configuration
-Deployment was managed using automated scripts that handle:
-- **Environment Setup**: The `.env` file contains environment-specific configurations, such as `FLASK_ENV`, `SECRET_KEY`, and database URIs.
-- **Database Migrations**: **Flask-Migrate** was used to handle database schema changes.
-- **Production Deployment**: The system was deployed to a cloud-based hosting provider that supports **Flask** applications (e.g., AWS or Heroku).
+## Repository Setup
+The repository for the **Procurement Management System** is structured to optimize clarity and efficiency:
+- **Master Branch**: The sole branch used in the project, containing the latest production-ready code. This branch ensures that the deployed application reflects the most stable version.
 
-### 2.4 Version Control Tools
-The following tools were utilized for version control and configuration management:
-- **Git**: For tracking changes in the codebase.
-- **GitHub**: For hosting the Git repository and managing issues and pull requests.
-- **GitHub Actions**: For Continuous Integration (CI) to run tests on every commit and pull request.
+### Directory Structure
 
-## 3. Procurement Management
+```
+procurement_management/
+├── procurement_app.py          # Main application file
+├── requirements.txt            # Python dependencies
+├── .env                        # Environment configuration file
+├── README.md                   # Project documentation
+├── templates/                  # HTML templates
+│   ├── base.html               # Base layout
+│   ├── index.html              # Procurement list page
+│   ├── add_procurement.html    # Form to add procurement request
+│   └── edit_procurement.html   # Form to edit procurement request
+├── static/                     # Static files (CSS, JS)
+│   └── styles.css              # CSS styles
+├── docs/                       # Documentation files
+│   ├── procurement_rfp.md      # Procurement requirements document
+│   └── project_report.md       # Configuration management and procurement report
+└── procurement.db              # SQLite database file
+```
 
-### 3.1 Tools and Services Acquired
-Several tools and services were identified and acquired to ensure the success of the project. These include:
-- **Cloud Hosting**: A scalable cloud hosting service was chosen to ensure reliability and availability.
-- **Relational Database**: A PostgreSQL database was selected for its performance and integration with Flask.
-- **Version Control**: GitHub was chosen to host the code repository and manage collaboration.
 
-### 3.2 Procurement Process
-The procurement process involved the following steps:
-- **Identification of Needs**: Based on the project requirements, key services such as hosting, database, and development tools were identified.
-- **Supplier Research**: Several suppliers were evaluated based on cost, service quality, and ease of integration.
-- **Request for Proposals (RFP)**: An RFP was sent out to selected suppliers, and proposals were reviewed.
-- **Final Selection**: Suppliers were selected based on a balance of cost, service reliability, and technical support.
 
-## 4. Conclusion
-The **Procurement Management System** project successfully implemented both configuration management and procurement strategies. The use of a GitFlow branching strategy ensured a smooth development process, while the procurement of reliable hosting and database services helped to ensure the system's scalability and robustness. The project was delivered on time and within budget, meeting all functional and non-functional requirements.
+The organization of the repository includes several key directories:
+- **/procurement_app**: Contains the core application logic, including backend functionality and data processing.
+- **/templates**: Holds HTML templates used for rendering the user interface of the application.
+- **/static**: Contains static files such as CSS and JavaScript that define the visual elements of the application.
+- **/docs**: A dedicated folder for project documentation, including user guides and technical specifications.
+
+## Branching Strategies
+While the project uses a single master branch, the branching strategy is designed to ensure the stability of the codebase. Key aspects include:
+- **Main Branch**: Represents stable, production-ready code.
+- **Future Branching**: Plans for potential feature branches to facilitate the development of new functionalities while maintaining the integrity of the master branch.
+
+## Application Settings and Deployment Configurations
+Proper deployment configurations are crucial for the application’s performance in different environments:
+- **Environment Variables**: Sensitive information such as API keys and database URIs are managed through environment variables to enhance security.
+- **Deployment to Cloud Services**: The application is hosted on a cloud platform (e.g., AWS, Heroku), allowing for automatic scaling and reliable uptime.
+
+## Documentation of Changes
+Comprehensive documentation is vital for transparency and ease of use. Key components of the documentation include:
+- **Change Logs**: Detailed records of significant changes made to the codebase, including new features and bug fixes.
+- **Configuration Guidelines**: Documentation on environment settings and how to manage them effectively.
+- **User Manuals**: Guides for end-users to navigate and utilize the application effectively.
+
+## Conclusion
+In conclusion, effective configuration management is essential for the successful implementation of the **Procurement Management System**. By adhering to robust version control practices, maintaining a clear repository structure, and ensuring thorough documentation, the team can deliver a high-quality and reliable software product that meets user needs.
+
+## References
+- Beckman, M.D. et al. (2021) ‘Implementing Version Control With Git and GitHub as a Learning Objective in Statistics and Data Science Courses’, *Journal of Statistics Education*. Available at: [https://doi.org/10.1080/10691898.2020.1848485](https://doi.org/10.1080/10691898.2020.1848485).
+- [Netlify Documentation](https://www.netlify.com/).
+- [AWS Deployment Guidelines](https://aws.amazon.com/getting-started/).
